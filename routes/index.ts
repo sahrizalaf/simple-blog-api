@@ -4,5 +4,5 @@ import { postRoutes } from "./post.routes";
 
 export const routes = express.Router();
 
-routes.use("/user", userRoutes);
+routes.use("/users", userRoutes);
 routes.use("/posts", postRoutes);

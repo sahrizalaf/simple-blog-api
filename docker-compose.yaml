@@ -4,8 +4,8 @@ services:
     image: postgres:10.3
     restart: always
     environment:
-      - POSTGRES_USER=simple_blog_api_user
-      - POSTGRES_PASSWORD=SimPleBlogApiUser!
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
     volumes:
       - postgres:/var/lib/postgresql/data
     ports:
