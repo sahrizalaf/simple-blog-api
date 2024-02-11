@@ -1,6 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-import express, { Request, Response } from "express";
-import createError from "http-errors";
+import express from "express";
 import { routes } from "../routes";
 
 const app = express();
@@ -10,10 +8,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", routes);
 
-app.use((req: Request, res: Response, next: Function) => {
-  next(createError);
-});
-
 app.listen(3000, () => {
-  console.log(`Simple Blog API service is running in port 3000`);
+  console.log(`Service is running in port 3000`);
 });
