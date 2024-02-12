@@ -6,11 +6,12 @@ import {
   updatePostController,
   deletePostController,
 } from "../controllers/post.controllers";
+import { validatePost } from "../utils/post.validator";
 
 export const postRoutes = express.Router();
 
 postRoutes.get("/", getAllPostsController);
-postRoutes.post("/", createPostController);
+postRoutes.post("/", validatePost, createPostController);
 postRoutes.get("/:id", getPostByIdController);
-postRoutes.put("/:id", updatePostController);
+postRoutes.put("/:id", validatePost, updatePostController);
 postRoutes.delete("/:id", deletePostController);

@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import Joi, { ValidationError, ValidationResult } from "Joi";
+import Joi, { ValidationResult } from "Joi";
 
 export const userSchema = Joi.object({
   id: Joi.number().integer().required(),
