@@ -1,20 +1,17 @@
 import { Request, Response, NextFunction } from "express";
 import Joi, { ValidationResult } from "Joi";
 
-export const userSchema = Joi.object({
-  id: Joi.number().integer().required(),
-  email: Joi.string().email().required(),
+export const authSchema = Joi.object({
   username: Joi.string().required().min(8),
   password: Joi.string().required().min(8),
-  name: Joi.string().required(),
 });
 
-export const validateUser = (
+export const validateLogin = (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
-  const result: ValidationResult = userSchema.validate(req.body, {
+  const result: ValidationResult = authSchema.validate(req.body, {
     abortEarly: false,
   });
 

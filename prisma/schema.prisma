@@ -14,6 +14,7 @@ model User {
     id          Int         @default(autoincrement()) @id
     email       String      @unique
     username    String      @unique
+    password    String      @default("admin123")
     name        String
     posts       Post[]
 }
