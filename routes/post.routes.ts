@@ -7,11 +7,12 @@ import {
   deletePostController,
 } from "../controllers/post.controllers";
 import { validatePost } from "../utils/post.validator";
+import { verifyToken } from "../middleware/auth.middleware";
 
 export const postRoutes = express.Router();
 
 postRoutes.get("/", getAllPostsController);
-postRoutes.post("/", validatePost, createPostController);
+postRoutes.post("/", verifyToken, validatePost, createPostController);
 postRoutes.get("/:id", getPostByIdController);
-postRoutes.put("/:id", validatePost, updatePostController);
-postRoutes.delete("/:id", deletePostController);
+postRoutes.put("/:id", verifyToken, validatePost, updatePostController);
+postRoutes.delete("/:id", verifyToken, deletePostController);

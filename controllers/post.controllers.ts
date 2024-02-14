@@ -19,6 +19,8 @@ export const getPostByIdController = async (req: Request, res: Response) => {
 };
 
 export const createPostController = async (req: Request, res: Response) => {
+  const user = res.locals.userDetails;
+  req.body.authorEmail = user.email;
   const { content, authorEmail } = req.body;
   const result = await prisma.post.create({
     data: {

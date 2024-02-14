@@ -3,7 +3,6 @@ import Joi, { ValidationResult } from "Joi";
 
 export const postSchema = Joi.object({
   content: Joi.string().required(),
-  authorEmail: Joi.string().required(),
 });
 
 export const validatePost = (

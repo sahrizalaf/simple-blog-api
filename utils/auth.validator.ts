@@ -17,7 +17,7 @@ export const validateLogin = (
 
   if (result.error) {
     return res.status(422).json({
-      message: "Invalid request data",
+      message: "Invalid data request",
       errors: result.error.details.map((err) => err.message),
     });
   }
