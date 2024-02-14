@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
+import { checkAuthorization } from "../utils/auth.utils";
 
 const prisma = new PrismaClient();
 
@@ -33,6 +34,12 @@ export const createPostController = async (req: Request, res: Response) => {
 
 export const updatePostController = async (req: Request, res: Response) => {
   const { id } = req.params;
+  const user = res.locals.userDetails;
+
+  const isAuthorized = await checkAuthorization(user, id);
+  if (!isAuthorized)
+    return res.status(401).json({ message: "Forbidden request!" });
+
   const post = await prisma.post.update({
     where: { id: Number(id) },
     data: {
@@ -44,6 +51,11 @@ export const updatePostController = async (req: Request, res: Response) => {
 
 export const deletePostController = async (req: Request, res: Response) => {
   const { id } = req.params;
+  const user = res.locals.userDetails;
+  const isAuthorized = await checkAuthorization(user, id);
+  if (!isAuthorized)
+    return res.status(401).json({ message: "Forbidden request!" });
+
   const post = await prisma.post.delete({
     where: { id: Number(id) },
   });
